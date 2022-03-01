@@ -1,18 +1,18 @@
 import 'package:testoop_danghoa/Calculate.dart';
 
-import 'Bill_Infomation.dart';
+import 'BillInfomation.dart';
 import 'Customer.dart';
 
-class HoaDon{
-  String maHoaDon;
-  KhachHang khachHang;
-  List<ChiTietHoaDon>listChiTietHoaDon ;
-  DateTime ngayLapHoaDon;
-  num giaHoaDon;
+class Bill{
+  String ID;
+  Customer customer;
+  List<BIllInfomation>listBillInfo ;
+  DateTime createdDate;
+  num totalPrice;
 
-  HoaDon(this.maHoaDon, this.khachHang, this.listChiTietHoaDon,
-      this.ngayLapHoaDon, this.giaHoaDon);
+  Bill(this.ID, this.customer, this.listBillInfo,
+      this.createdDate, this.totalPrice);
   String ToString(){
-    return "Hóa đơn: \tMã hóa đơn : <$maHoaDon> \tNgày lâp: <${ToStringDate(ngayLapHoaDon)}> \tTổng tiền: <$giaHoaDon>";
+    return "Hóa đơn: \tMã hóa đơn : <$ID> \tNgày lâp: <${ToStringDate(createdDate)}> \tTổng tiền: <$totalPrice>";
   }
 }

@@ -16,7 +16,7 @@ class TwoWayAirConditioner extends AirConditioner {
   @override
   String toStringValue() {
     String content =
-        "\tMáy Lạnh : <$ID> <loại máy lạnh : 1 chiều>  " + super.toStringValue();
+        "\tMáy Lạnh : <$ID> <loại máy lạnh : 2 chiều>  " + super.toStringValue();
     if (hasInverter) {
       content += "\n\tInverter: <Có>";
     } else {
@@ -38,29 +38,29 @@ class TwoWayAirConditioner extends AirConditioner {
   @override
   void enterData() {
     super.enterData();
-    switch (enterString("\t\t\t\t\t\tInverter : 1.Có\t2.Không :")) {
+    switch (enterString("\t\t\t\t\t\tInverter : 1: Có \tKhác: Không - ")) {
       case "1":
         hasInverter = true;
         break;
-      case "2":
+      default:
         hasInverter = false;
         break;
     }
 
-    switch (enterString("\t\t\t\t\t\tKhử mùi : 1.Có\t2.Không :")) {
+    switch (enterString("\t\t\t\t\t\tKhử mùi : 1: Có \tKhác: Không - ")) {
       case "1":
         deodorizationTechnology = true;
         break;
-      case "2":
+      default :
         deodorizationTechnology = false;
         break;
     }
 
-    switch (enterString("\t\t\t\t\t\tKhử khuẩn : 1.Có\t2.Không :")) {
+    switch (enterString("\t\t\t\t\t\tKhử khuẩn : 1: Có \tKhác: Không - ")) {
       case "1":
         sterilizationTechnology = true;
         break;
-      case "2":
+      default:
         sterilizationTechnology = false;
         break;
     }

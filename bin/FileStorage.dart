@@ -3,46 +3,42 @@ import 'dart:convert';
 import 'dart:io';
 
 import '../model/Bill.dart';
+import 'testoop_danghoa.dart';
 
 class FileStorage {
   //Đường dẫn file mới nếu tạo
   String path= Directory.current.path+"/"+"data/data.txt";
-  //Đường dẫn của file data trong project
-  File pathInProject = File("C:/Users/ADMIN/IdeaProjects/testoop_danghoa/data/data.txt");
+
   //Đường dẫn của file
   late File file ;
   FileStorage() {
     //Nếu không có đường dẫn của project thì sẽ tạo file mới
-    if(FileSystemEntity.typeSync(pathInProject.path) != FileSystemEntityType.notFound)
-      {
-        file = pathInProject ;
-      }
-    else{
+
       if(FileSystemEntity.typeSync(path) != FileSystemEntityType.notFound)
-        {
-          file = File(path) ;
-        }
+      {
+        file = File(path) ;
+      }
       else{
         createNewFile();
-      }
     }
   }
   void createNewFile() {
     File(path).createSync(recursive: true);
+    file = File(path) ;
   }
-  Future<void> writeHoaDon(HoaDon hoaDon) async {
+  Future<void> writeHoaDon(Bill bill) async {
     String value = "***************************************************\n"
-        "\t\t${hoaDon.ToString()}\n"
-        "\t${hoaDon.khachHang.toStringValue()}\n"
+        "\t\t${bill.ToString()}\n"
+        "\t${bill.customer.toStringValue()}\n"
         "\tDanh sách các chi tiết hóa đơn:\n";
-    hoaDon.listChiTietHoaDon.forEach((element) {
-      value += element.thietBiDien.toStringValue() +"\tSố lượng : <${element.soLuong}>\n";
-    });
+    for (var element in bill.listBillInfo) {
+      value += element.electricalEquipment.toStringValue() +"\tSố lượng : <${element.amount}>\n";
+    }
    await file.writeAsString(value,encoding: utf8,mode: FileMode.append);
   }
 
 
-  Future<void> readHoaDon(int page,List<String>array) async {
+  Future<void> readListBill(int page,List<String>array) async {
     //Nhân màn hình và di chuyển con trỏ về dòng đầu
     print("\x1B[1J\x1B[0;0H");
     print("\t\t\t\t\tThông tin hóa đơn");
@@ -60,7 +56,18 @@ class FileStorage {
 
   }
 
-  List<String> getDanhSachHoaDon() {
+  Future<void>  SaveListBill(List<Bill> bills) async{
+    if(bills.isNotEmpty)
+    {
+    for (Bill element in bills) {
+     await writeHoaDon(element);
+    }}
+    else{
+      ClearAndGotoMenuWithLabel("\tChưa có hóa đơn mới nào! Vui lòng tạo hóa đơn mới sau đó hãy lưu!\n\t Nhấn phím bất kì để tiếp tục !");
+    }
+
+  }
+  List<String> getListBill() {
     String value  = file.readAsStringSync(encoding: utf8);
     var array = value.split("***************************************************");
     //Đầu tiên là chuỗi rỗng nên phải remove

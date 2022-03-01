@@ -21,11 +21,11 @@ class OneWayAirConditioner extends AirConditioner {
   @override
   void  enterData(){
     super.enterData();
-    switch (enterString("\t\t\t\t\t\tInverter : 1.Có\t2.Không :")) {
+    switch (enterString("\t\t\t\t\t\tInverter : 1: Có \tKhác: Không - ")) {
       case "1":
         hasInverter = true;
         break;
-      case "2":
+      default:
         hasInverter = false;
         break;
     }

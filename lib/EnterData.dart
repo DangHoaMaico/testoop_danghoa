@@ -45,6 +45,13 @@ num? enterNum (String label)
       stdout.write("\t\tVui lòng nhập số ! \n");
       return enterNum(label);
   }
+  else{
+    if(res<0)
+      {
+        stdout.write("\t\tVui lòng nhập số lớn hơn 0 ! \n");
+        return enterNum(label);
+      }
+  }
   return res;
 }
 

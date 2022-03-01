@@ -45,9 +45,17 @@ void Menu(){
       DisplayListBillInCache();
       break;
     case "4":
-          fileStorage.SaveListBill(listBill).whenComplete(() => {
-            ClearAndGotoMenuWithLabel("Lưu thành công \n\t Nhấn phím bất kì để tiếp tục !")
-          });
+      if(listBill.isNotEmpty) {
+        fileStorage.SaveListBill(listBill).whenComplete(() =>
+        {
+          ClearAndGotoMenuWithLabel("Lưu thành công với đường dẫn ${fileStorage
+              .path}\n\t Nhấn phím bất kì để tiếp tục !")
+        });
+        listBill.clear();
+
+      }else {
+        ClearAndGotoMenuWithLabel("\tVui lòng tạo hóa đơn mới và sau đó hãy bắt đầu lưu!");
+      }
       break;
     case "5":
       if(listBill.isNotEmpty)
@@ -58,9 +66,9 @@ void Menu(){
               break;
             case "2":
               fileStorage.SaveListBill(listBill).whenComplete(() => {
-                ExitWithLabel("\tLưu thành công \n\t Nhấn phím bất kì để thoát !")
+                ExitWithLabel("\tLưu thành công với đường dẫn ${fileStorage.path}\n\t Nhấn phím bất kì để thoát !"),
+                listBill.clear()
               });
-
               break;
             default:
               ClearAndGotoMenu();

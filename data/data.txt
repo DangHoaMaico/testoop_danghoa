@@ -4,3 +4,21 @@
 	Danh sách các chi tiết hóa đơn:
 	Máy Quạt : <1> <Loại máy quạt : Máy quạt đứng> 	Tên sản phầm: <1> 	Nơi sản xuất: <1> 
 	Giá bán: <500> 	Số lượng : <1>
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : <1> 	Ngày lâp: <01/03/2022> 	Tổng tiền: <500>
+	Thông tin khác hàng: 	Mã khách hàng: <1> 	Tên Khách Hàng: <1> 	Địa Chỉ: <1sadlaskdalskd> 	Số điện thoại: <0938838383>
+	Danh sách các chi tiết hóa đơn:
+	Máy Quạt : <1> <Loại máy quạt : Máy quạt đứng> 	Tên sản phầm: <1> 	Nơi sản xuất: <1> 
+	Giá bán: <500> 	Số lượng : <1>
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : <1> 	Ngày lâp: <01/03/2022> 	Tổng tiền: <500>
+	Thông tin khác hàng: 	Mã khách hàng: <1> 	Tên Khách Hàng: <1> 	Địa Chỉ: <1sadlaskdalskd> 	Số điện thoại: <0938838383>
+	Danh sách các chi tiết hóa đơn:
+	Máy Quạt : <1> <Loại máy quạt : Máy quạt đứng> 	Tên sản phầm: <1> 	Nơi sản xuất: <1> 
+	Giá bán: <500> 	Số lượng : <1>
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : <1> 	Ngày lâp: <01/03/2022> 	Tổng tiền: <500>
+	Thông tin khác hàng: 	Mã khách hàng: <1> 	Tên Khách Hàng: <1> 	Địa Chỉ: <dklasjkldjlaksjd> 	Số điện thoại: <1>
+	Danh sách các chi tiết hóa đơn:
+	Máy Quạt : <1> <Loại máy quạt : Máy quạt đứng> 	Tên sản phầm: <1> 	Nơi sản xuất: <1> 
+	Giá bán: <500> 	Số lượng : <1>

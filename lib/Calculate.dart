@@ -41,7 +41,7 @@ num getTwoWayAirConditionerPrice(bool hasInverter,bool khangKhuan,bool khuMui){
   }
   return price;
 }
-String ToStringDate(DateTime dateTime){
+String toStringDate(DateTime dateTime){
   var formatter = DateFormat('dd/MM/yyyy');
   String formattedDate = formatter.format(dateTime);
   return formattedDate;

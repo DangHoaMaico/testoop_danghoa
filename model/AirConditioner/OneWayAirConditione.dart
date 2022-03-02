@@ -4,11 +4,11 @@ import 'package:testoop_danghoa/EnterData.dart';
 import 'AirConditioner.dart';
 
 class OneWayAirConditioner extends AirConditioner {
-  OneWayAirConditioner(String ID, String nameProduct, num price, String whereProduction, bool hasInverter) : super(ID, nameProduct, price, whereProduction, hasInverter);
+  OneWayAirConditioner(String iD, String nameProduct, num price, String whereProduction, bool hasInverter) : super(iD, nameProduct, price, whereProduction, hasInverter);
   OneWayAirConditioner.noParameter():super('', '', 0, '',false);
   @override
   String toStringValue() {
-    String content = "\tMáy Lạnh : <$ID> <loại máy lạnh : 1 chiều> "+super.toStringValue();
+    String content = "\tMáy Lạnh : <$iD> <loại máy lạnh : 1 chiều> "+super.toStringValue();
     if(hasInverter)
       {
         content+="\n\tInverter: <Có>";

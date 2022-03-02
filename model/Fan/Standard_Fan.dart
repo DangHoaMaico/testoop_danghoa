@@ -3,11 +3,11 @@ import 'package:testoop_danghoa/Calculate.dart';
 import 'Fan.dart';
 
 class Standard_Fan extends Fan {
-  Standard_Fan(String ID, String productName, num? price, String whereProduction) : super(ID, productName, price, whereProduction);
+  Standard_Fan(String iD, String productName, num? price, String whereProduction) : super(iD, productName, price, whereProduction);
   Standard_Fan.noParameter():super('', '', 0, '');
   @override
   String toStringValue() {
-    String content = "\tMáy Quạt : <$ID> <Loại máy quạt : Máy quạt đứng> "+super.toStringValue();
+    String content = "\tMáy Quạt : <$iD> <Loại máy quạt : Máy quạt đứng> "+super.toStringValue();
     return content;
   }
   @override

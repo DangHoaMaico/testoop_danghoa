@@ -5,12 +5,12 @@ import 'Fan.dart';
 
 class Steam_Fan extends Fan{
   num liter ;
-  Steam_Fan(String ID, String productName, num? price, String whereProduction,this.liter) : super(ID, productName, price, whereProduction);
+  Steam_Fan(String iD, String productName, num? price, String whereProduction,this.liter) : super(iD, productName, price, whereProduction);
   Steam_Fan.noParameter(this.liter):super('', '', 0, '');
   @override
   String toStringValue() {
 
-    String content = "\tMáy Quạt : <$ID> <Loại máy quạt : Máy quạt hơi nước> "+super.toStringValue()+"\tDung tích tối đa: <$liter l>";
+    String content = "\tMáy Quạt : <$iD> <Loại máy quạt : Máy quạt hơi nước> "+super.toStringValue()+"\tDung tích tối đa: <$liter l>";
 
     return content;
   }

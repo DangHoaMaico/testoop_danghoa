@@ -56,14 +56,14 @@ class FileStorage {
 
   }
 
-  Future<void>  SaveListBill(List<Bill> bills) async{
+  Future<void>  saveListBill(List<Bill> bills) async{
     if(bills.isNotEmpty)
     {
     for (Bill element in bills) {
      await writeHoaDon(element);
     }}
     else{
-      ClearAndGotoMenuWithLabel("\tChưa có hóa đơn mới nào! Vui lòng tạo hóa đơn mới sau đó hãy lưu!\n\t Nhấn phím bất kì để tiếp tục !");
+      clearAndGotoMenuWithLabel("\tChưa có hóa đơn mới nào! Vui lòng tạo hóa đơn mới sau đó hãy lưu!\n\t Nhấn phím bất kì để tiếp tục !");
     }
 
   }

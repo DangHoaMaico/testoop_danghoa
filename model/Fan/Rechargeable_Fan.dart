@@ -4,7 +4,7 @@ import 'Fan.dart';
 
 class Rechargeable_Fan extends Fan{
   num batteryCapacity;
-  Rechargeable_Fan(String ID, String productName, num? price, String whereProduction,this.batteryCapacity) : super(ID, productName, price, whereProduction);
+  Rechargeable_Fan(String iD, String productName, num? price, String whereProduction,this.batteryCapacity) : super(iD, productName, price, whereProduction);
   Rechargeable_Fan.noParameter(this.batteryCapacity):super('', '', 0, '');
   num GetBatteryCapacity() => batteryCapacity;
   void SetBatteryCapacity(num value) {
@@ -12,7 +12,7 @@ class Rechargeable_Fan extends Fan{
   }
   @override
   String toStringValue() {
-    String content = "\tMáy Quạt : <$ID> <Loại máy quạt : Máy quạt sạc điện> "+super.toStringValue()+" \tDung lượng pin: <$batteryCapacity>";
+    String content = "\tMáy Quạt : <$iD> <Loại máy quạt : Máy quạt sạc điện> "+super.toStringValue()+" \tDung lượng pin: <$batteryCapacity>";
     return content;
   }
   @override

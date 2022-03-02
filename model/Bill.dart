@@ -4,15 +4,15 @@ import 'BillInfomation.dart';
 import 'Customer.dart';
 
 class Bill{
-  String ID;
+  String iD;
   Customer customer;
   List<BIllInfomation>listBillInfo ;
   DateTime createdDate;
   num totalPrice;
 
-  Bill(this.ID, this.customer, this.listBillInfo,
+  Bill(this.iD, this.customer, this.listBillInfo,
       this.createdDate, this.totalPrice);
   String ToString(){
-    return "Hóa đơn: \tMã hóa đơn : <$ID> \tNgày lâp: <${ToStringDate(createdDate)}> \tTổng tiền: <$totalPrice>";
+    return "Hóa đơn: \tMã hóa đơn : <$iD> \tNgày lâp: <${toStringDate(createdDate)}> \tTổng tiền: <$totalPrice>";
   }
 }

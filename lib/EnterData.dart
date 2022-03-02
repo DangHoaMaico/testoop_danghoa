@@ -46,7 +46,7 @@ num? enterNum (String label)
       return enterNum(label);
   }
   else{
-    if(res<0)
+    if(res<0||res ==0)
       {
         stdout.write("\t\tVui lòng nhập số lớn hơn 0 ! \n");
         return enterNum(label);

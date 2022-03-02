@@ -6,9 +6,9 @@ import 'AirConditioner.dart';
 class TwoWayAirConditioner extends AirConditioner {
   bool deodorizationTechnology, sterilizationTechnology;
 
-  TwoWayAirConditioner(String ID, String nameProduct, num price,
+  TwoWayAirConditioner(String iD, String nameProduct, num price,
       String whereProduction, bool hasInverter,this.deodorizationTechnology,this.sterilizationTechnology)
-      : super(ID, nameProduct, price, whereProduction, hasInverter);
+      : super(iD, nameProduct, price, whereProduction, hasInverter);
 
   TwoWayAirConditioner.noParameter(this.sterilizationTechnology, this.deodorizationTechnology)
       : super('', '', 0, '', false);
@@ -16,7 +16,7 @@ class TwoWayAirConditioner extends AirConditioner {
   @override
   String toStringValue() {
     String content =
-        "\tMáy Lạnh : <$ID> <loại máy lạnh : 2 chiều>  " + super.toStringValue();
+        "\tMáy Lạnh : <$iD> <loại máy lạnh : 2 chiều>  " + super.toStringValue();
     if (hasInverter) {
       content += "\n\tInverter: <Có>";
     } else {

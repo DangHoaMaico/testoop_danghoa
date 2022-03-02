@@ -1,7 +1,7 @@
 import 'package:testoop_danghoa/Calculate.dart';
 import 'package:testoop_danghoa/EnterData.dart';
 
-import 'AirConditioner.dart';
+import '../AirConditioner.dart';
 
 class TwoWayAirConditioner extends AirConditioner {
   bool deodorizationTechnology, sterilizationTechnology;
@@ -16,21 +16,21 @@ class TwoWayAirConditioner extends AirConditioner {
   @override
   String toStringValue() {
     String content =
-        "\tMáy Lạnh : <$iD> <loại máy lạnh : 2 chiều>  " + super.toStringValue();
+        "\tMáy Lạnh : $iD loại máy lạnh : 2 chiều  " + super.toStringValue();
     if (hasInverter) {
-      content += "\n\tInverter: <Có>";
+      content += "\n\tInverter: Có";
     } else {
-      content += "\n\tInverter: <Không>";
+      content += "\n\tInverter: Không";
     }
     if (sterilizationTechnology) {
-      content += "\tKhử khuẩn: <Có>";
+      content += "\tKhử khuẩn: Có";
     } else {
-      content += "\tKhử khuẩn: <Không>";
+      content += "\tKhử khuẩn: Không";
     }
     if (deodorizationTechnology) {
-      content += "\tKhử mùi: <Có>";
+      content += "\tKhử mùi: Có";
     } else {
-      content += "\tKhử mùi: <Không>";
+      content += "\tKhử mùi: Không";
     }
     return content;
   }

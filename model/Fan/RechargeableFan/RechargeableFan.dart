@@ -1,6 +1,7 @@
 import 'package:testoop_danghoa/Calculate.dart';
 import 'package:testoop_danghoa/EnterData.dart';
-import 'Fan.dart';
+import '../../../bin/testoop_danghoa.dart';
+import '../Fan.dart';
 
 class RechargeableFan extends Fan{
   num batteryCapacity;
@@ -12,13 +13,13 @@ class RechargeableFan extends Fan{
   }
   @override
   String toStringValue() {
-    String content = "\tMáy Quạt : <$iD> <Loại máy quạt : Máy quạt sạc điện> "+super.toStringValue()+" \tDung lượng pin: <$batteryCapacity>";
+    String content = "\tMáy Quạt : $iD Loại máy quạt : Máy quạt sạc điện "+super.toStringValue()+" \tDung lượng pin: $batteryCapacity";
     return content;
   }
   @override
   void  enterData(){
     super.enterData();
-    batteryCapacity = enterNum("\t\t\t\t\t\tDung lượng pin: ")!;
+    batteryCapacity = enterNumAndCallFunction("\t\t\t\t\t\tDung lượng pin: ",menu)!;
     price = getRechargeableFanPrice(batteryCapacity);
   }
 }

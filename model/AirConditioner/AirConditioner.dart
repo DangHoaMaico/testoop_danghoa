@@ -1,4 +1,4 @@
-import '../Electrical_Equipment.dart';
+import '../Electrical_Equipment/Electrical_Equipment.dart';
 
 abstract class AirConditioner extends ElectricalEquipment{
   bool hasInverter;

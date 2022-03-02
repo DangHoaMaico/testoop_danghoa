@@ -1,7 +1,8 @@
 import 'package:testoop_danghoa/Calculate.dart';
 import 'package:testoop_danghoa/EnterData.dart';
 
-import 'Fan.dart';
+import '../../../bin/testoop_danghoa.dart';
+import '../Fan.dart';
 
 class SteamFan extends Fan{
   num liter ;
@@ -9,13 +10,13 @@ class SteamFan extends Fan{
   SteamFan.noParameter(this.liter):super('', '', 0, '');
   @override
   String toStringValue() {
-    String content = "\tMáy Quạt : <$iD> <Loại máy quạt : Máy quạt hơi nước> "+super.toStringValue()+"\tDung tích tối đa: <$liter l>";
+    String content = "\tMáy Quạt : $iD Loại máy quạt : Máy quạt hơi nước "+super.toStringValue()+"\tDung tích tối đa: $liter l";
     return content;
   }
   @override
   void  enterData(){
     super.enterData();
-    liter = enterNum("\t\t\t\t\t\tDung tích nước: ")!;
+    liter = enterNumAndCallFunction("\t\t\t\t\t\tDung tích nước: ",menu)!;
     price = getSteamFanPrice(liter);
   }
 }

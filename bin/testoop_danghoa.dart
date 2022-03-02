@@ -3,20 +3,20 @@ import 'dart:io';
 import 'dart:math';
 import 'package:testoop_danghoa/Calculate.dart' as testoop_danghoa;
 import 'package:testoop_danghoa/EnterData.dart';
-import '../model/AirConditioner/OneWayAirConditione.dart';
-import '../model/AirConditioner/TwoWayAirConditione.dart';
-import '../model/BillInfomation.dart';
-import '../model/Bill.dart';
-import '../model/Customer.dart';
-import '../model/Fan/StandardFan.dart';
-import '../model/Fan/RechargeableFan.dart';
-import '../model/Fan/SteamFan.dart';
+import '../model/AirConditioner/OneWayAirConditioner/OneWayAirConditione.dart';
+import '../model/AirConditioner/TwoWayAirConditioner/TwoWayAirConditione.dart';
+import '../model/Bill/Bill.dart';
+import '../model/Bill/BillInfomation/BillInfomation.dart';
+import '../model/Customer/Customer.dart';
+import '../model/Fan/StandardFan/StandardFan.dart';
+import '../model/Fan/RechargeableFan/RechargeableFan.dart';
+import '../model/Fan/SteamFan/SteamFan.dart';
 import 'FileStorage.dart';
 
 int? n = 0;
 List<Bill> listBill = [];
 FileStorage fileStorage = FileStorage();
-
+List<Bill> temp = [];
 Future<void> main(List<String> arguments) async {
   try {
     fileStorage = FileStorage();
@@ -26,7 +26,7 @@ Future<void> main(List<String> arguments) async {
   }
 }
 
-void menu() {
+Future<void> menu() async {
   print("\t---- Menu ----");
   print("\t1. Thêm Hóa Đơn Mới");
   print("\t2. Xem danh sách hóa đơn từ bộ nhớ");
@@ -45,11 +45,9 @@ void menu() {
       break;
     case "4":
       if (listBill.isNotEmpty) {
-        fileStorage.saveListBill(listBill).whenComplete(() => {
+          await  fileStorage.saveListBill(listBill).whenComplete(() => {
               clearAndGotoMenuWithLabel(
-                  "Lưu thành công với đường dẫn ${fileStorage.path}\n\t Nhấn phím bất kì để tiếp tục !")
-            });
-        listBill.clear();
+                  "\tLưu thành công với đường dẫn ${fileStorage.path}\n\t Nhấn phím bất kì để tiếp tục !")}).catchError((e)=>{print(e.toString())});
       } else {
         clearAndGotoMenuWithLabel(
             "\tVui lòng tạo hóa đơn mới và sau đó hãy bắt đầu lưu!");
@@ -77,94 +75,89 @@ void menu() {
       }
       break;
     default:
-      clearAndGotoMenuWithLabel(
-          "\tVui lòng chọn đúng lựa chọn!\n\tNhấn phím bất kì để tiếp tục");
+      clearAndGotoMenuWithLabel("\tVui lòng chọn đúng lựa chọn!\n\tNhấn phím bất kì để tiếp tục");
       break;
   }
 }
 
 Future<void> addBill() async {
-  n = enterNum("\t\tSố lượng hóa đơn muốn nhập: ") as int?;
+  print("\t\tLưu ý : Nhấn E + Enter để hủy hóa đơn");
+  n = enterNumAndCallFunction("\t\tSố lượng hóa đơn muốn nhập: ",menu) as int?;
   if (n != null) {
     for (int i = 0; i < n!; i++) {
       //Thông tin hóa đơn
       String? idBill;
       Customer customer = Customer.noParameter();
-      List<BIllInfomation> listChiTietHoaDon = [];
+      List<BillInfomation> listChiTietHoaDon = [];
       DateTime createdDate;
-      num giaHoaDon = 0;
+      num totalPrice = 0;
       //Nhập thông tin hóa đơn
       print("\t\tNhập thông tin hóa đơn ${i + 1}: ");
-      idBill = enterString("\t\tMã hóa đơn: ");
+      idBill = enterStringAndCallFunction("\t\tMã hóa đơn: ",menu);
       createdDate = DateTime.now();
       stdout.writeln(
           "\t\tNgày lập hóa đơn: " + testoop_danghoa.toStringDate(createdDate));
-
       //Nhập thông tin khách hàng
       print("\t\tThông tin khách hàng:");
       customer.enterData();
-
       stdout.writeln("\t\t\tNhập danh sách các chi tiết hóa đơn:");
-      int? soCTHoaDon = enterNum(
-              "\t\t\t\tSố lượng chi tiết trong danh sách các chi tiết hóa đơn: ")
+      int? soCTHoaDon = enterNumAndCallFunction(
+              "\t\t\t\tSố lượng chi tiết trong danh sách các chi tiết hóa đơn: ",menu)
           as int?;
-
       for (int j = 0; j < soCTHoaDon!; j++) {
         print("\t\t\t\tNhập chi tiết hóa đơn thứ ${j + 1}");
-        String? deviceType = enterString(
-            "\t\t\t\t\tChọn loại thiết bị điện (1-máy quạt, 2- máy lạnh) , Phím khác - Hủy:");
+        String? deviceType = enterStringWithCondition(
+            "\t\t\t\t\tChọn loại thiết bị điện (1-máy quạt, 2- máy lạnh) :  ",["1","2"]);
         switch (deviceType) {
           case "1":
-            String? fanType = enterString(
-                "\t\t\t\t\t\tChọn loại máy quạt (1-máy quạt đứng,2- máy quạt hơi nước,3 – máy quạt sạc điện) , Phím khác - Hủy:");
+            String? fanType = enterStringWithCondition(
+                "\t\t\t\t\t\tChọn loại máy quạt (1-máy quạt đứng,2- máy quạt hơi nước,3 – máy quạt sạc điện): ",["1","2","3"]);
             //Chọn và Nhập thông tin máy quạt
             switch (fanType) {
               case "1":
                 StandardFan standardFan = StandardFan.noParameter();
                 standardFan.enterData();
-                BIllInfomation billInfo = BIllInfomation(
-                    standardFan, enterNum("\t\t\t\tSố lượng bán ra: ") as int);
+                BillInfomation billInfo = BillInfomation(
+                    standardFan, enterNumAndCallFunction("\t\t\t\tSố lượng bán ra: ",menu) as int);
                 listChiTietHoaDon.add(billInfo);
                 break;
               case "2":
                 SteamFan steamFan = SteamFan.noParameter(0);
                 steamFan.enterData();
-                BIllInfomation billInfo = BIllInfomation(
-                    steamFan, enterNum("\t\t\t\tSố lượng bán ra: ") as int);
+                BillInfomation billInfo = BillInfomation(
+                    steamFan, enterNumAndCallFunction("\t\t\t\tSố lượng bán ra: ",menu) as int);
                 listChiTietHoaDon.add(billInfo);
                 break;
               case "3":
                 RechargeableFan rechargeableFan =
                     RechargeableFan.noParameter(0);
                 rechargeableFan.enterData();
-                BIllInfomation billInfo = BIllInfomation(rechargeableFan,
-                    enterNum("\t\t\t\tSố lượng bán ra: ") as int);
+                BillInfomation billInfo = BillInfomation(rechargeableFan,
+                    enterNumAndCallFunction("\t\t\t\tSố lượng bán ra: ",menu) as int);
                 listChiTietHoaDon.add(billInfo);
-                break;
-              default:
                 break;
             }
             break;
 
           case "2":
             //Chọn và Nhập thông tin máy lạnh
-            String? loaiMayLanh = enterString(
-                "\t\t\t\t\t\tChọn loại máy lạnh (1-máy lạnh 1 chiều,2-máy lạnh 2 chiều) , Phím khác - Hủy:");
+            String? loaiMayLanh = enterStringWithCondition(
+                "\t\t\t\t\t\tChọn loại máy lạnh (1-máy lạnh 1 chiều,2-máy lạnh 2 chiều): ",["1","2"]);
             switch (loaiMayLanh) {
               case "1":
                 OneWayAirConditioner oneWayConditioner =
                     OneWayAirConditioner.noParameter();
                 oneWayConditioner.enterData();
-                BIllInfomation billInfo = BIllInfomation(oneWayConditioner,
-                    enterNum("\t\t\t\tSố lượng bán ra: ") as int);
+                BillInfomation billInfo = BillInfomation(oneWayConditioner,
+                    enterNumAndCallFunction("\t\t\t\tSố lượng bán ra: ",menu) as int);
                 listChiTietHoaDon.add(billInfo);
                 break;
               case "2":
                 TwoWayAirConditioner twoWayConditioner =
                     TwoWayAirConditioner.noParameter(false, false);
                 twoWayConditioner.enterData();
-                BIllInfomation billInfo = BIllInfomation(twoWayConditioner,
-                    enterNum("\t\t\t\tSố lượng bán ra: ") as int);
+                BillInfomation billInfo = BillInfomation(twoWayConditioner,
+                    enterNumAndCallFunction("\t\t\t\tSố lượng bán ra: ",menu)as int);
                 listChiTietHoaDon.add(billInfo);
                 break;
               default:
@@ -177,23 +170,18 @@ Future<void> addBill() async {
       }
       //Tính tổng giá hóa đơn
       for (var element in listChiTietHoaDon) {
-        giaHoaDon += (element.electricalEquipment.price! * element.amount);
+        totalPrice += (element.electricalEquipment.price! * element.amount);
       }
-      Bill hoaDon =
-          Bill(idBill!, customer, listChiTietHoaDon, createdDate, giaHoaDon);
-
-      if (hoaDon.listBillInfo.isNotEmpty) {
-        print("\tTổng Tiền hòa đơn : $giaHoaDon");
-        listBill.add(hoaDon);
-        print("\tĐã lưu vào bộ nhớ tạm");
-        print("\tNhấn phím bất kì để quay về Menu chính ");
-        stdin.readLineSync();
-      } else {
-        print(" Đã hủy! nhấn phím bất kì để quay về Menu chính");
-        stdin.readLineSync();
+      Bill bill =
+          Bill(idBill!, customer, listChiTietHoaDon, createdDate, totalPrice);
+      if (bill.listBillInfo.isNotEmpty) {
+        print("\tTổng Tiền hóa đơn : $totalPrice");
+        listBill.add(bill);
+        temp.add(bill);
+        print("\tĐã lưu vào bộ nhớ tạm\n");
       }
-      clearAndGotoMenu();
     }
+    clearAndGotoMenuWithLabel("\tNhấn phím bất kì để quay về Menu");
   }
 }
 
@@ -231,9 +219,9 @@ Future<void> displayListBill() async {
           stdin.lineMode = true;
           stdin.echoMode = true;
           print("\x1B[2J\x1B[0;0H");
-          menu();
           break;
       }
+      menu();
     }
   } else {
     stdin.lineMode = true;
@@ -253,30 +241,30 @@ Future<void> displayListBillInCache() async {
   //trang đầu tiên là Hóa đon 0
   int page = 0;
   //lấy danh sách hóa đơn
-
   if (listBill.isNotEmpty) {
     //Hiển thị hóa đơn đầu tiên
-    readBillInCache(0, listBill);
+    readBillInCache(0, temp);
     while (true) {
       var value = stdin.readByteSync();
       switch (value) {
         case 110: //nhấn Phím N
-          if (page < (listBill.length - 1)) {
-            readBillInCache(page, listBill);
+          if (page < (temp.length - 1)) {
+            readBillInCache(++page, temp);
           } else {
             page = 0;
-            readBillInCache(page, listBill);
+            readBillInCache(page, temp);
           }
           break;
         case 112: //nhấn Phím P
           if (page > 0) {
-            readBillInCache(page, listBill);
+            readBillInCache(--page, temp);
           } else {
             page = 0;
-            readBillInCache(page, listBill);
+            readBillInCache(page, temp);
           }
           break;
         default:
+          temp.clear();
           //clean màn hình và setting lại stdin
           stdin.lineMode = true;
           stdin.echoMode = true;
@@ -289,11 +277,7 @@ Future<void> displayListBillInCache() async {
     stdin.lineMode = true;
     stdin.echoMode = true;
     print("\x1B[2J\x1B[0;0H");
-    print(
-        "\t   Bạn chưa có hóa đơn nào cả !\n\tNhấn phím bất kì để quay lại Menu");
-    stdin.readLineSync();
-    print("\x1B[2J\x1B[0;0H");
-    menu();
+    clearAndGotoMenuWithLabel("\t   Bạn chưa có hóa đơn nào cả !\n\tNhấn phím bất kì để quay lại Menu");
   }
 }
 
@@ -302,12 +286,12 @@ Future<void> readBillInCache(int page, List<Bill> array) async {
   Bill bill = array[page];
   print("\x1B[1J\x1B[0;0H");
   print("\t\t\t\t\tThông tin hóa đơn");
-  String value = "\t\t${bill.ToString()}\n"
-      "\t${bill.customer.toStringValue()}\n"
-      "\tDanh sách các chi tiết hóa đơn:\n";
+  String value = "\t\t${bill.ToString()}\n\n"
+      "\t${bill.customer.toStringValue()}\n\n"
+      "\tDanh sách các chi tiết hóa đơn:\n\n";
   for (var element in bill.listBillInfo) {
     value += element.electricalEquipment.toStringValue() +
-        "\tSố lượng : <${element.amount}>\n";
+        "\tSố lượng : ${element.amount}\n\n";
   }
   print(value);
   print("\n\t\t\t\t\tHóa đơn số ${page + 1}/" + array.length.toString());

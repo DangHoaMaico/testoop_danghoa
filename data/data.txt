@@ -29,3 +29,69 @@
 	Máy Lạnh : <ML2c> <loại máy lạnh : 2 chiều>  	Tên sản phầm: <May Lanh 2 C> 	Nơi sản xuất: <Hanoi> 
 	Giá bán: <2000> 
 	Inverter: <Không>	Khử khuẩn: <Không>	Khử mùi: <Không>	Số lượng : <2>
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : <HD1> 	Ngày lâp: <02/03/2022> 	Tổng tiền: <500>
+	Thông tin khác hàng: 	Mã khách hàng: <KH1> 	Tên Khách Hàng: <Minh Du> 
+			Địa Chỉ: <Thu Ducc , HCM> 	Số điện thoại: <0797842160>
+	Danh sách các chi tiết hóa đơn:
+	Máy Quạt : <1> <Loại máy quạt : Máy quạt đứng> 	Tên sản phầm: <1> 	Nơi sản xuất: <1> 
+	Giá bán: <500> 	Số lượng : <1>
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : <HD1> 	Ngày lâp: <02/03/2022> 	Tổng tiền: <500000>
+	Thông tin khác hàng: 	Mã khách hàng: <KH7> 	Tên Khách Hàng: <Minh An> 
+				Địa Chỉ: <Quan Thu Duc , HCM> 	Số điện thoại: <0797842160>
+	Danh sách các chi tiết hóa đơn:
+	Máy Quạt : <MQSD> <Loại máy quạt : Máy quạt sạc điện> 		Tên sản phầm: <May Quat Sac Dien> 	Nơi sản xuất: <HCm> 
+		tGiá bán: <500000>  	Dung lượng pin: <1000>	Số lượng : <1>
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : 1 	Ngày lâp: 02/03/2022 	Tổng tiền: 500
+
+	Thông tin khách hàng: 	Mã khách hàng: 1 	Tên Khách Hàng: 1 
+				Địa Chỉ: 11111111111111111 	Số điện thoại: 09111111111111111
+
+	Danh sách các chi tiết hóa đơn:
+
+	Máy Quạt : 1 <Loại máy quạt : Máy quạt đứng 		Tên sản phầm: 1 	Nơi sản xuất: 1 
+	Giá bán: 500 	Số lượng : 1
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : 1 	Ngày lâp: 02/03/2022 	Tổng tiền: 1000
+
+	Thông tin khách hàng: 	Mã khách hàng: 1 	Tên Khách Hàng: 1 
+				Địa Chỉ: ALSKDAKDLASKDLAKD 	Số điện thoại: 1
+
+	Danh sách các chi tiết hóa đơn:
+
+	Máy Quạt : 1 <Loại máy quạt : Máy quạt đứng 		Tên sản phầm: 1 	Nơi sản xuất: 1 
+	Giá bán: 500 	Số lượng : 2
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : 2 	Ngày lâp: 02/03/2022 	Tổng tiền: 500
+
+	Thông tin khách hàng: 	Mã khách hàng: 2 	Tên Khách Hàng: 2 
+				Địa Chỉ: KASDJKAJSDKADJKAS 	Số điện thoại: 091
+
+	Danh sách các chi tiết hóa đơn:
+
+	Máy Quạt : 1 <Loại máy quạt : Máy quạt đứng 		Tên sản phầm: 1 	Nơi sản xuất: 1 
+	Giá bán: 500 	Số lượng : 1
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : 1 	Ngày lâp: 02/03/2022 	Tổng tiền: 500
+
+	Thông tin khách hàng: 	Mã khách hàng: 1 	Tên Khách Hàng: 1 
+				Địa Chỉ: 22222222222222222222222 	Số điện thoại: 09222222222222
+
+	Danh sách các chi tiết hóa đơn:
+
+	Máy Quạt : 1 <Loại máy quạt : Máy quạt đứng 		Tên sản phầm: 1 	Nơi sản xuất: 1 
+	Giá bán: 500 	Số lượng : 1
+
+***************************************************
+		Hóa đơn: 	Mã hóa đơn : 1 	Ngày lâp: 02/03/2022 	Tổng tiền: 500
+
+	Thông tin khách hàng: 	Mã khách hàng: 1 	Tên Khách Hàng: 1 
+				Địa Chỉ: 11111111111111111 	Số điện thoại: 1
+
+	Danh sách các chi tiết hóa đơn:
+
+	Máy Quạt : 1 <Loại máy quạt : Máy quạt đứng 		Tên sản phầm: 1 	Nơi sản xuất: 1 
+	Giá bán: 500 	Số lượng : 1
+

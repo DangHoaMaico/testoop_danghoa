@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
 
-import '../model/Bill.dart';
+
+import '../model/Bill/Bill.dart';
 import 'testoop_danghoa.dart';
 
 class FileStorage {
+
   //Đường dẫn file mới nếu tạo
   String path= Directory.current.path+"/"+"data/data.txt";
 
@@ -26,17 +29,16 @@ class FileStorage {
     File(path).createSync(recursive: true);
     file = File(path) ;
   }
-  Future<void> writeHoaDon(Bill bill) async {
-    String value = "***************************************************\n"
-        "\t\t${bill.ToString()}\n"
-        "\t${bill.customer.toStringValue()}\n"
-        "\tDanh sách các chi tiết hóa đơn:\n";
-    for (var element in bill.listBillInfo) {
-      value += element.electricalEquipment.toStringValue() +"\tSố lượng : <${element.amount}>\n";
-    }
-   await file.writeAsString(value,encoding: utf8,mode: FileMode.append);
+  Future writeHoaDon(Bill bill) async {
+      String value = "***************************************************\n"
+          "\t\t${bill.ToString()}\n\n"
+          "\t${bill.customer.toStringValue()}\n\n"
+          "\tDanh sách các chi tiết hóa đơn:\n\n";
+      for (var element in bill.listBillInfo) {
+        value += element.electricalEquipment.toStringValue() +"\tSố lượng : ${element.amount}\n\n";
+      }
+      await file.writeAsString(value,encoding: utf8,mode: FileMode.append);
   }
-
 
   Future<void> readListBill(int page,List<String>array) async {
     //Nhân màn hình và di chuyển con trỏ về dòng đầu
@@ -59,19 +61,20 @@ class FileStorage {
   Future<void>  saveListBill(List<Bill> bills) async{
     if(bills.isNotEmpty)
     {
-    for (Bill element in bills) {
-     await writeHoaDon(element);
-    }}
-    else{
-      clearAndGotoMenuWithLabel("\tChưa có hóa đơn mới nào! Vui lòng tạo hóa đơn mới sau đó hãy lưu!\n\t Nhấn phím bất kì để tiếp tục !");
-    }
-
+      List<Bill> teamp = bills;
+      for (Bill element in teamp) {
+        await writeHoaDon(element);
+      }}
+      else{
+        clearAndGotoMenuWithLabel("\tChưa có hóa đơn mới nào! Vui lòng tạo hóa đơn mới sau đó hãy lưu!\n\t Nhấn phím bất kì để tiếp tục !");
+      }
   }
   List<String> getListBill() {
     String value  = file.readAsStringSync(encoding: utf8);
     var array = value.split("***************************************************");
     //Đầu tiên là chuỗi rỗng nên phải remove
     array.removeAt(0);
+
     return array;
   }
 }

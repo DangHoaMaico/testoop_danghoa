@@ -8,9 +8,9 @@ import '../model/AirConditioner/TwoWayAirConditione.dart';
 import '../model/BillInfomation.dart';
 import '../model/Bill.dart';
 import '../model/Customer.dart';
-import '../model/Fan/Standard_Fan.dart';
-import '../model/Fan/Rechargeable_Fan.dart';
-import '../model/Fan/Steam_Fan.dart';
+import '../model/Fan/StandardFan.dart';
+import '../model/Fan/RechargeableFan.dart';
+import '../model/Fan/SteamFan.dart';
 import 'FileStorage.dart';
 
 int? n = 0;
@@ -120,22 +120,22 @@ Future<void> addBill() async {
             //Chọn và Nhập thông tin máy quạt
             switch (fanType) {
               case "1":
-                Standard_Fan standardFan = Standard_Fan.noParameter();
+                StandardFan standardFan = StandardFan.noParameter();
                 standardFan.enterData();
                 BIllInfomation billInfo = BIllInfomation(
                     standardFan, enterNum("\t\t\t\tSố lượng bán ra: ") as int);
                 listChiTietHoaDon.add(billInfo);
                 break;
               case "2":
-                Steam_Fan steamFan = Steam_Fan.noParameter(0);
+                SteamFan steamFan = SteamFan.noParameter(0);
                 steamFan.enterData();
                 BIllInfomation billInfo = BIllInfomation(
                     steamFan, enterNum("\t\t\t\tSố lượng bán ra: ") as int);
                 listChiTietHoaDon.add(billInfo);
                 break;
               case "3":
-                Rechargeable_Fan rechargeableFan =
-                    Rechargeable_Fan.noParameter(0);
+                RechargeableFan rechargeableFan =
+                    RechargeableFan.noParameter(0);
                 rechargeableFan.enterData();
                 BIllInfomation billInfo = BIllInfomation(rechargeableFan,
                     enterNum("\t\t\t\tSố lượng bán ra: ") as int);
@@ -236,6 +236,8 @@ Future<void> displayListBill() async {
       }
     }
   } else {
+    stdin.lineMode = true;
+    stdin.echoMode = true;
     print("\x1B[2J\x1B[0;0H");
     print(
         "\t   Bạn chưa có hóa đơn nào cả !\n\tNhấn phím bất kì để quay lại Menu");

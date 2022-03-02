@@ -2,10 +2,10 @@ import 'package:testoop_danghoa/Calculate.dart';
 import 'package:testoop_danghoa/EnterData.dart';
 import 'Fan.dart';
 
-class Rechargeable_Fan extends Fan{
+class RechargeableFan extends Fan{
   num batteryCapacity;
-  Rechargeable_Fan(String iD, String productName, num? price, String whereProduction,this.batteryCapacity) : super(iD, productName, price, whereProduction);
-  Rechargeable_Fan.noParameter(this.batteryCapacity):super('', '', 0, '');
+  RechargeableFan(String iD, String productName, num? price, String whereProduction,this.batteryCapacity) : super(iD, productName, price, whereProduction);
+  RechargeableFan.noParameter(this.batteryCapacity):super('', '', 0, '');
   num GetBatteryCapacity() => batteryCapacity;
   void SetBatteryCapacity(num value) {
     batteryCapacity = value;
